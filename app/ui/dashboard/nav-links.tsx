@@ -27,7 +27,7 @@ const links = [
 export default function NavLinks() {
     const pathname = usePathname();
     return (
-        <div className='flex flex-col gap-1'>
+        <div className='flex flex-col gap-1 py-4'>
             {links.map(link => {
                 const LinkIcon = link.icon;
                 return (
@@ -35,11 +35,11 @@ export default function NavLinks() {
                         key={link.name}
                         href={link.href}
                         className={clsx(
-                            'text-sm flex items-center jsutify-center px-2 py-3 gap-2 rounded-md hover:bg-gray-50 hover:text-orange-500 hover:[&>svg]:text-orange-500',
-                            { 'bg-gray-50 text-orange-500 [&>svg]:text-orange-500': pathname === link.href },
+                            'py-2.5 flex gap-2 pl-3 hover:transition-[background] text-[15px] hover:duration-300 relative hover:bg-zinc-100/80 dark:hover:bg-zinc-800/70',
+                            { 'bg-zinc-100/80 dark:hover:bg-zinc-800/70': pathname === link.href },
                         )}
                     >
-                        <LinkIcon className='w-6 text-gray-400' />
+                        <LinkIcon className='w-5' />
                         <p className=''>{link.name}</p>
                     </Link>
                 )
