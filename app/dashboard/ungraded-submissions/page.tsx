@@ -19,9 +19,7 @@ export default async function Page(props: {
 
     return (
         <div className="w-full">
-            <div className="mb-8">
-                <h1 className="text-2xl">Ungraded Submissions</h1>
-            </div>
+            <h1 className="text-3xl font-semibold py-2 md:py-3 dark:text-zinc-200 mb-12">Ungraded Submissions</h1>
             <div className="flex items-center justify-between mb-8">
                 <CourseFilter options={[...new Set(submissions.map(i => i.coursename).sort())]} />
             </div>
