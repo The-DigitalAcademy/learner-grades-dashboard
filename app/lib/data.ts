@@ -1,4 +1,4 @@
-import { ActivityReport, extendedUngradedSubmission, SubmissionData, UngradedSubmission } from "./definitions";
+import { ActivityReport, AutograderLog, extendedUngradedSubmission, SubmissionData, UngradedSubmission } from "./definitions";
 
 export async function fetchUngradedSubmissions(): Promise<extendedUngradedSubmission[]> {
     let response;
@@ -94,5 +94,22 @@ export async function getSubmission(submissionId: string): Promise<SubmissionDat
         return data.length > 0 ? data[0] : null;
     } catch (error) {
         return null;
+    }
+}
+
+export async function fetchAutograderLogs(): Promise<AutograderLog[]> {
+    let response;
+    try {
+        response = await fetch(`${process.env.SUPABASE_URL}/rest/v1/autograde_worker_log`, {
+            headers: { 'apiKey': process.env.SUPABASE_ANON_KEY || '' }
+        })
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status} ${await response.text()}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Moodle Error:', response);
+        throw new Error('Failed to fetch activity reports data.');
     }
 }

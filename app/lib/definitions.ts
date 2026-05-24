@@ -37,3 +37,24 @@ export type ActivityReport = {
     submissiondate: number | null;
     submissionstatus: 'ontime' | 'pending' | 'missed' | 'late';
 }
+
+export type AutograderLog = {
+    id: number;
+    created_at: string;
+    submission_id: number;
+    user_id: number;
+    submission_status: string;
+    assignment_id: number;
+    assignment_name: string;
+    assignment_intro: string;
+    assignment_activity: string;
+    submission_content: string;
+    submitted_at: string | null;
+    autograde_status: string;
+    autograde_status_details: string;
+    cmid: number;
+    status: string;
+    details: string;
+    attempt: number;
+    data: any;
+}
