@@ -1,29 +1,15 @@
-import { UngradedSubmission } from "./definitions";
-
-export type SubmissionfilterProps = {
-    coursename?: string;
-    activitytype?: string;
-    activityname?: string;
-    username?: string;
-}
-type listKeys = "coursename" | "activitytype" | "activityname" | "username";
-
-export function generateSubmissionFilterList(data: UngradedSubmission[], filterValues: SubmissionfilterProps, finalListKey: listKeys) {
-    let filtered = data;
-    for (const [key, value] of Object.entries(filterValues)) {
-        if (!value) continue;
-        filtered = filtered.filter(item => (item[key as keyof typeof filtered[0]] == value))
-    }
-    let finalFilteredList = filtered.map(i => i[finalListKey as keyof typeof filtered[0]])
-
-    return [...new Set(finalFilteredList.sort())]
+export function getFilteredListUniqueValues<T>(list: T[], filters: Partial<T>, returnKey: keyof T): string[] {
+    const filtered = filterList(list, filters).map(item => String(item[returnKey]));
+    return [...new Set(filtered.sort())]
 }
 
-export function filterSubmissions(data: UngradedSubmission[], filterValues: SubmissionfilterProps) {
-    let filtered = data;
-    for (const [key, value] of Object.entries(filterValues)) {
-        if (!value) continue;
-        filtered = filtered.filter(item => (item[key as keyof typeof filtered[0]] == value))
-    }
-    return filtered;
+export function filterList<T>(list: T[], filters: Partial<T>) {
+    return list.filter(item => {
+        for (const key of Object.keys(filters)) {
+            if (filters[key as keyof typeof item] && item[key as keyof typeof item] != filters[key as keyof typeof item]) {
+                return false; // Exclude item if it doesn't match the filter
+            }
+        }
+        return true;
+    })
 }

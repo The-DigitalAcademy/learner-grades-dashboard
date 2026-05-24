@@ -10,7 +10,30 @@ export type UngradedSubmission = {
     gradepath: string;
 }
 
-export type Course = {
+export type extendedUngradedSubmission = UngradedSubmission & {
+    blocked: boolean, comment: string
+}
+
+export type SubmissionData = {
     id: number,
-    name: string
+    submission_id: string,
+    blocked: boolean,
+    comment: string | null,
+    created_at: string,
+    updated_at: string
+}
+
+export type ActivityReport = {
+    id: string;
+    coursename: string;
+    groupname: string;
+    userid: number;
+    firstname: string;
+    lastname: string;
+    activitytype: string;
+    activityname: string;
+    grade: number | null;
+    duedate: number | null;
+    submissiondate: number | null;
+    submissionstatus: 'ontime' | 'pending' | 'missed' | 'late';
 }
