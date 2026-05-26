@@ -30,18 +30,20 @@ export default async function Page(props: Props) {
         <div className="w-full">
             <h1 className="text-3xl font-semibold py-2 md:py-3 dark:text-zinc-200 mb-12">Ungraded Submissions</h1>
             <div className="flex items-center gap-5 mb-8">
-                <FilterDropdown
-                    resetParamsOnChange
-                    title="Course" keyName='course'
-                    options={getFilteredListUniqueValues(submissions, {}, 'coursename')} />
-                <FilterDropdown
-                    title="Activity" keyName={'activity'}
-                    options={getFilteredListUniqueValues(submissions, { coursename: searchParams?.course }, 'activityname')} />
-                <FilterDropdown
-                    title="Type" keyName='type'
-                    options={getFilteredListUniqueValues(submissions, {}, 'activitytype')} />
-                <FilterDropdown title="Learner" keyName='user'
-                    options={getFilteredListUniqueValues(submissions, { coursename: searchParams?.course }, 'username')} />
+                <Suspense>
+                    <FilterDropdown
+                        resetParamsOnChange
+                        title="Course" keyName='course'
+                        options={getFilteredListUniqueValues(submissions, {}, 'coursename')} />
+                    <FilterDropdown
+                        title="Activity" keyName={'activity'}
+                        options={getFilteredListUniqueValues(submissions, { coursename: searchParams?.course }, 'activityname')} />
+                    <FilterDropdown
+                        title="Type" keyName='type'
+                        options={getFilteredListUniqueValues(submissions, {}, 'activitytype')} />
+                    <FilterDropdown title="Learner" keyName='user'
+                        options={getFilteredListUniqueValues(submissions, { coursename: searchParams?.course }, 'username')} />
+                </Suspense>
             </div>
             <Suspense>
                 <Table submissions={filterList(submissions, filterValues)} />

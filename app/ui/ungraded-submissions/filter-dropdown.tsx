@@ -32,7 +32,7 @@ export default function FilterDropdown({ options, title, keyName, resetParamsOnC
             </button>
 
             {isOpen && (
-                <ul className="w-64 bg-white border border-gray-300 rounded-lg shadow-md mt-1 py-2 right-0 absolute top-20 max-h-100 overflow-y-scroll">
+                <ul className="w-64 bg-white border border-gray-300 rounded-lg shadow-md mt-1 py-2 right-0 absolute top-20 max-h-100 overflow-y-scroll z-1">
                     {Array.isArray(options) && ["select", ...options].map((option) => (
                         <li key={option} className={`px-2 py-2 flex items-center gap-2 cursor-pointer ${option === selectedOption ? "bg-gray-100" : "hover:bg-gray-100"}`} onClick={() => handleSelect(option)} >
                             <span>{option}</span>

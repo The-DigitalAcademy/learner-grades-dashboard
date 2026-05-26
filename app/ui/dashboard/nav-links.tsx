@@ -18,8 +18,8 @@ const links = [
         icon: DocumentMagnifyingGlassIcon
     },
     {
-        name: 'Activity Grade Reports',
-        href: '/dashboard/activity-grade-reports',
+        name: 'Activity Reports',
+        href: '/dashboard/activity-reports',
         icon: ChartPieIcon
     }
 ];
@@ -35,8 +35,8 @@ export default function NavLinks() {
                         key={link.name}
                         href={link.href}
                         className={clsx(
-                            'py-2.5 flex gap-2 pl-3 hover:transition-[background] text-[15px] hover:duration-300 relative hover:bg-zinc-100/80 dark:hover:bg-zinc-800/70',
-                            { 'bg-zinc-100/80 dark:hover:bg-zinc-800/70': pathname === link.href },
+                            'py-2.5 flex gap-2 pl-3 hover:transition-[background] text-[15px] hover:duration-300 relative hover:bg-zinc-100/80',
+                            { 'bg-zinc-100/80': pathname === link.href },
                         )}
                     >
                         <LinkIcon className='w-5' />
